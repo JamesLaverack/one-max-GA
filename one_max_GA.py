@@ -43,6 +43,14 @@ class OneMaxGA:
         return [self.population[i].count(True) + 1
         for i in range(self.population_size)]
 
+    def mutate(self, element):
+        '''Takes a single element and mutates it.'''
+        for i in range(len(element)):
+            if random.random() < self.mutation_rate:
+                # mutate this gene!
+                element[i] = not(element[i])
+        return element
+
     def crossover(self, mother, father):
         '''Takes in two parents, performs a crossover operation
         and returns a list of a child and the contrapositive child'''
@@ -56,7 +64,8 @@ class OneMaxGA:
         mother = weighted_choice(self.population, self.fitness)
         father = weighted_choice(self.population, self.fitness)
         children = self.crossover(mother, father)
-        self.next_population += children
+        self.next_population += [self.mutate(children[0])]
+        self.next_population += [self.mutate(children[1])]
 
     def cull(self):
         '''Kills off the last population and moves onto the next.'''
