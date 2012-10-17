@@ -74,10 +74,7 @@ class one_max_GA:
 if __name__ == "__main__":
     GA = one_max_GA(5, 4, 0.25)
     GA.starting_population()
-    #print GA.measure_fitness()
-    #print weighted_choice(GA.population, GA.measure_fitness())
     for i in range(10):
         print "At generation " + str(i)
         print "Average fitness is " + str(average(GA.fitness))
-        #print GA.population
         GA.do_generation()
