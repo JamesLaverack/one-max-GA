@@ -37,7 +37,7 @@ class one_max_GA:
         '''Creates a randomised starting population'''
         self.population = [[randTrueFalse() for y in range(self.chromosome_length)] for x in range(self.population_size)]
         
-    def mesure_fitness(self):
+    def measure_fitness(self):
         '''Measures the fitness of each element in the population.
         In this case this means how many True values it contains.'''
         return [self.population[i].count(True)+1 for i in range(self.population_size)]
@@ -51,8 +51,8 @@ class one_max_GA:
         return (child, other_child)
         
     def create_children(self):
-        mother = weighted_choice(self.population, self.mesure_fitness())
-        father = weighted_choice(self.population, self.mesure_fitness())
+        mother = weighted_choice(self.population, self.measure_fitness())
+        father = weighted_choice(self.population, self.measure_fitness())
         children = self.crossover(mother, father)
         self.next_population += children
         
@@ -68,11 +68,11 @@ class one_max_GA:
 if __name__ == "__main__":
     GA = one_max_GA(5, 4, 0.25)
     GA.starting_population()
-    #print GA.mesure_fitness()
-    #print weighted_choice(GA.population, GA.mesure_fitness())
+    #print GA.measure_fitness()
+    #print weighted_choice(GA.population, GA.measure_fitness())
     for i in range(10):
         print "At generation " + str(i)
-        print "Average fitness is " + str(sum(GA.mesure_fitness()) / float(len(GA.mesure_fitness())))
+        print "Average fitness is " + str(sum(GA.measure_fitness()) / float(len(GA.measure_fitness())))
         #print GA.population
         GA.do_generation()
         
