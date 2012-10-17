@@ -1,14 +1,6 @@
 import random
 
 
-def randTrueFalse():
-    '''Returns ether True or False uniformly at random'''
-    if random.randint(0, 1) == 1:
-        return True
-    else:
-        return False
-
-
 def weighted_choice(elements, weights):
     value = random.randint(0, sum(weights) - 1)
     # Loop for each element
@@ -36,7 +28,7 @@ class one_max_GA:
 
     def starting_population(self):
         '''Creates a randomised starting population'''
-        self.population = [[randTrueFalse()
+        self.population = [[random.choice([True, False])
         for y in range(self.chromosome_length)]
         for x in range(self.population_size)]
         self.fitness = self.measure_fitness()
