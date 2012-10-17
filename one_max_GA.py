@@ -21,7 +21,7 @@ def weighted_choice(elements, weights):
 
 
 def average(L):
-    sum(L) / float(len(L))
+    return sum(L) / float(len(L))
 
 
 class one_max_GA:
