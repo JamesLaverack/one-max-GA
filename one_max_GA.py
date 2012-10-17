@@ -46,7 +46,7 @@ class OneMaxGA:
     def crossover(self, mother, father):
         '''Takes in two parents, performs a crossover operation
         and returns a list of a child and the contrapositive child'''
-        split_point = random.randint(0, self.population_size - 1)
+        split_point = random.randint(0, self.chromosome_length - 1)
         child = mother[:split_point] + father[split_point:]
         other_child = mother[split_point:] + father[:split_point]
         return (child, other_child)
