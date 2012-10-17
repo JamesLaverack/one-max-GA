@@ -1,3 +1,4 @@
+import argparse
 import random
 
 
@@ -81,9 +82,24 @@ class OneMaxGA:
         self.cull()
 
 if __name__ == "__main__":
-    GA = OneMaxGA(5, 4, 0.25)
+    # Get and parse command line arguments
+    parser = argparse.ArgumentParser(
+    description='Runs a simple genetic algorithm on the 1-Max problem.')
+    parser.add_argument('--chromosome_length', '-c',
+                        help='Length of chromosomes.', default=5, type=int)
+    parser.add_argument('--population_size', '-p',
+                        help='Size of population.', default=4, type=int)
+    parser.add_argument('--mutation_rate', '-m',
+                        help='Rate of mutation.', default=0.25, type=float)
+    parser.add_argument('--iterations', '-i',
+                        help='Number of iterations.', default=10, type=int)
+    arguments = parser.parse_args()
+
+    # Run simulation
+    GA = OneMaxGA(arguments.chromosome_length,
+                  arguments.population_size, arguments.mutation_rate)
     GA.starting_population()
-    for i in range(10):
+    for i in range(arguments.iterations):
         print "At generation " + str(i) + " average fitness is " + str(
         average(GA.fitness))
         GA.do_generation()
