@@ -75,6 +75,6 @@ if __name__ == "__main__":
     GA = OneMaxGA(5, 4, 0.25)
     GA.starting_population()
     for i in range(10):
-        print "At generation " + str(i)
-        print "Average fitness is " + str(average(GA.fitness))
+        print "At generation " + str(i) + " average fitness is " + str(
+        average(GA.fitness))
         GA.do_generation()
