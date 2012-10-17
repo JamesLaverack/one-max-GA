@@ -16,7 +16,7 @@ def average(L):
     return sum(L) / float(len(L))
 
 
-class one_max_GA:
+class OneMaxGA:
     '''Performs the 1-max problem optimisation with a genetic algorithm'''
 
     def __init__(self, chromosome_length, population_size, mutation_rate):
@@ -64,7 +64,7 @@ class one_max_GA:
         self.cull()
 
 if __name__ == "__main__":
-    GA = one_max_GA(5, 4, 0.25)
+    GA = OneMaxGA(5, 4, 0.25)
     GA.starting_population()
     for i in range(10):
         print "At generation " + str(i)
