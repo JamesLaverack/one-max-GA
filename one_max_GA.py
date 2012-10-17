@@ -2,6 +2,9 @@ import random
 
 
 def weighted_choice(elements, weights):
+    '''Picks a value from a list of elements, weighted by a list of weights.
+    Such that the element 'elements[i]' has weighting 'weights[i]'. It is
+    assumed that the weightings are integers and are not normalised.'''
     value = random.randint(0, sum(weights) - 1)
     # Loop for each element
     for i in range(len(elements)):
@@ -13,6 +16,7 @@ def weighted_choice(elements, weights):
 
 
 def average(L):
+    '''Returns the floating-point average of all the values in a list'''
     return sum(L) / float(len(L))
 
 
@@ -48,17 +52,21 @@ class OneMaxGA:
         return (child, other_child)
 
     def create_children(self):
+        '''Gets two random parents and creates two children from this'''
         mother = weighted_choice(self.population, self.fitness)
         father = weighted_choice(self.population, self.fitness)
         children = self.crossover(mother, father)
         self.next_population += children
 
     def cull(self):
+        '''Kills off the last population and moves onto the next.'''
         self.population = self.next_population
         self.next_population = []
         self.fitness = self.measure_fitness()
 
     def do_generation(self):
+        '''Performs an entire generation, including creating children and
+        culling the previous generation.'''
         while len(self.next_population) < self.population_size:
             self.create_children()
         self.cull()
